@@ -18,8 +18,6 @@ def create_data_lake():
               |___ forecasts/
 
     ```
-
-
     """
     
     import os
