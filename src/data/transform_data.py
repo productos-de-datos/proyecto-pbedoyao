@@ -40,10 +40,9 @@ def transform_data():
             print("Error al transformar el archivo " + Archivos)
         
     
-    raise NotImplementedError("Implementar esta función")
+    #raise NotImplementedError("Implementar esta función")
 
-if __name__ == "__main__":
-    
+if __name__ == "__main__":  
     import doctest
 
     doctest.testmod()
