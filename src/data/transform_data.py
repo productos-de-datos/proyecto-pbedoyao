@@ -20,7 +20,7 @@ def transform_data():
     
     
     for Archivos in ArchivosLanding:
-        try:            
+        #try:            
             dfArchivo = pd.read_excel(Archivos)
             if dfArchivo.columns[0] != "Fecha":
 
@@ -39,9 +39,9 @@ def transform_data():
                 NombreArchivoCSV = NombreArchivo.split(".")[0] + ".csv"
                 dfArchivo.to_csv("./data_lake/raw/" + NombreArchivoCSV, index=False)
                 
-        except:
+        #except:
             
-            print("Error al transformar el archivo " + Archivos )
+        #    print("Error al transformar el archivo " + Archivos )
         
     
     #raise NotImplementedError("Implementar esta función")
