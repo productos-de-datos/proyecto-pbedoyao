@@ -44,7 +44,7 @@ def ingest_data():
         Anos = str(Anos)
         DescargarArchivo(Anos)
     
-    raise NotImplementedError("Implementar esta función")
+    #raise NotImplementedError("Implementar esta función")
 
 if __name__ == "__main__":
     import doctest
