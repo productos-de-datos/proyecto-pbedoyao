@@ -28,16 +28,20 @@ def transform_data():
                 dfArchivo = pd.read_excel(Archivos, skiprows=FilaInicianDatos)
                 NombreArchivo = Archivos.split("/")[-1]
                 NombreArchivoCSV = NombreArchivo.split(".")[0] + ".csv"
-                dfArchivo.to_csv("data_lake/raw/" + NombreArchivoCSV, index=False)
+                #ArchivoLocal = open(f"data_lake/landing/" + NombreArchivoCSV, "wb")
+                #ArchivoLocal.write(dfArchivo)
+                #ArchivoLocal.close()
+                dfArchivo.to_csv("./data_lake/raw/" + NombreArchivoCSV, index=False)
                 
             else:
 
                 NombreArchivo = Archivos.split("/")[-1]
                 NombreArchivoCSV = NombreArchivo.split(".")[0] + ".csv"
-                dfArchivo.to_csv("data_lake/raw/" + NombreArchivoCSV, index=False)
+                dfArchivo.to_csv("./data_lake/raw/" + NombreArchivoCSV, index=False)
                 
         except:
-            print("Error al transformar el archivo " + Archivos)
+            
+            print("Error al transformar el archivo " + Archivos )
         
     
     #raise NotImplementedError("Implementar esta función")
