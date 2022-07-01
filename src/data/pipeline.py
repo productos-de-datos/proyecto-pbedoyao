@@ -25,8 +25,8 @@ class ObtenerTransformarDatos(Task):
         return LocalTarget("data_lake/raw/*.csv")
 
     def run(self):
-        ingest_data()
-        transform_data()
+        ingest_data.ingest_data()
+        transform_data.transform_data()
         
 
 class PrepararDatos(Task):
@@ -49,8 +49,8 @@ class DatosFinales(Task):
         return LocalTarget(["data_lake/business/precios-diarios.csv","data_lake/business/precios-mensuales.csv",])
 
     def run(self):
-        compute_daily_prices()
-        compute_monthly_prices()
+        compute_daily_prices.compute_daily_prices()
+        compute_monthly_prices.compute_monthly_prices()
 
 if __name__ == '__main__': 
     luigi.run(["DatosFinales", "--local-scheduler"]) 
