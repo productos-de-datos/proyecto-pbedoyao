@@ -43,7 +43,7 @@ def clean_data():
     TodosArchivosCSV = []
 
     for ArchivoCSV in ArchivosRaw:
-        Data = pd.read_csv(ArchivoCSV)
+        Data = pd.read_csv("data_lake/raw/" + ArchivoCSV)
         Data = Data.fillna(method="bfill", axis=1)
         Data = pd.melt(Data, id_vars=["Fecha"], value_vars=["H00","H01","H02","H03","H04","H05","H06","H07","H08","H09","H10","H11","H12","H13","H14","H15","H16","H17","H18","H19","H20","H21","H22","H23",],)
         Data.columns = ["Fecha", "Hora", "Precio"]
