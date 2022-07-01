@@ -12,7 +12,11 @@ def transform_data():
     from os import remove
     import pandas as pd
     import os
+    import subprocess
 
+    subprocess.call(["pip", "install", "openpyxl"])
+    subprocess.call(["pip", "install", "xlrd"])
+    
     ArchivosLanding = []
     for Archivo in os.listdir("data_lake/landing/"):
         if Archivo.endswith(".xls") or Archivo.endswith(".xlsx"):
