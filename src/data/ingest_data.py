@@ -30,9 +30,11 @@ def ingest_data():
             ArchivoLocal.write(request.urlopen(f"https://github.com/jdvelasq/datalabs/raw/master/datasets/precio_bolsa_nacional/xls/" + Ano + "." + Extension).read())
             ArchivoLocal.close()
         except Exception:
-            Extension='xls'
             ArchivoLocal.close()
-            ArchivoLocal = open(f"data_lake/landing/" + Ano + "." + Extension, "wb")
+            if "data_lake/landing/" + Ano + ".xlsx":
+                remove(f"data_lake/landing/" + Ano + ".xlsx")
+            Extension='.xls'
+            ArchivoLocal = open(f"data_lake/landing/" + Ano +  Extension, "wb")
             ArchivoLocal.write(request.urlopen(f"https://github.com/jdvelasq/datalabs/raw/master/datasets/precio_bolsa_nacional/xls/" + Ano + "." + Extension).read())
             ArchivoLocal.close()
         except:
@@ -40,7 +42,9 @@ def ingest_data():
     
     for Anos in LisAno:
         Anos = str(Anos)
-        if "data_lake/landing/" + Anos + ".xlsx" == True:
+        if "data_lake/landing/" + Anos + ".xlsx":
+            remove(f"data_lake/landing/" + Anos + ".xlsx")
+        if "data_lake/landing/" + Anos + ".xls":
             remove(f"data_lake/landing/" + Anos + ".xlsx")
         DescargarArchivo(Anos)
     
