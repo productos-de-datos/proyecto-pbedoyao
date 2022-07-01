@@ -17,7 +17,7 @@ import clean_data
 import compute_daily_prices
 import compute_monthly_prices
 import luigi 
-from luigi import Task, LocalTarget, req
+from luigi import Task, LocalTarget
 
 class ObtenerTransformarDatos(Task):    
     
