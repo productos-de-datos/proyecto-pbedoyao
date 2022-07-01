@@ -16,8 +16,8 @@ def compute_monthly_prices():
 
     Datos = pd.read_csv('./data_lake/cleansed/precios-horarios.csv')
     Datos["Fecha"] = pd.to_datetime(Datos["Fecha"], format='%Y-%m-%d').dt.to_period("M").dt.to_timestamp()
-    Datos = Datos.groupby(by="Fecha",as_index=False).agg({"Precio":"mean"})
-    Datos.to_csv('./data_lake/business/precios-mensuales.csv', encoding='utf-8', index=False)
+    DatosAgrupados = Datos.groupby(by="Fecha",as_index=False).agg({"Precio":"mean"})
+    DatosAgrupados.to_csv('./data_lake/business/precios-mensuales.csv', encoding='utf-8', index=False)
 
 if __name__ == "__main__":
     import doctest
