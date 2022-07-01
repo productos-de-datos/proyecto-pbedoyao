@@ -33,8 +33,8 @@ def ingest_data():
             ArchivoLocal.close()
             if "data_lake/landing/" + Ano + ".xlsx":
                 remove(f"data_lake/landing/" + Ano + ".xlsx")
-            Extension='.xls'
-            ArchivoLocal = open(f"data_lake/landing/" + Ano +  Extension, "wb")
+            Extension='xls'
+            ArchivoLocal = open(f"data_lake/landing/" + Ano + "." + Extension, "wb")
             ArchivoLocal.write(request.urlopen(f"https://github.com/jdvelasq/datalabs/raw/master/datasets/precio_bolsa_nacional/xls/" + Ano + "." + Extension).read())
             ArchivoLocal.close()
         except:
