@@ -20,9 +20,6 @@ import luigi
 from luigi import Task, LocalTarget
 
 class ObtenerTransformarDatos(Task):    
-    
-    def output(self):
-        return LocalTarget("data_lake/raw/*.csv")
 
     def run(self):
         ingest_data.ingest_data()
@@ -51,11 +48,11 @@ class DatosFinales(Task):
     def run(self):
         compute_daily_prices.compute_daily_prices()
         compute_monthly_prices.compute_monthly_prices()
-
-if __name__ == '__main__': 
-    luigi.run(["DatosFinales", "--local-scheduler"]) 
+    
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+    
+    luigi.run(["DatosFinales", "--local-scheduler"]) 
