@@ -42,10 +42,6 @@ def ingest_data():
     
     for Anos in LisAno:
         Anos = str(Anos)
-        if "data_lake/landing/" + Anos + ".xlsx":
-            remove(f"data_lake/landing/" + Anos + ".xlsx")
-        if "data_lake/landing/" + Anos + ".xls":
-            remove(f"data_lake/landing/" + Anos + ".xlsx")
         DescargarArchivo(Anos)
     
     raise NotImplementedError("Implementar esta función")
