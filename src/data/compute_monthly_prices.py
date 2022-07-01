@@ -19,7 +19,10 @@ def compute_monthly_prices():
     DatosAgrupados = Datos.groupby(by="Fecha",as_index=False).agg({"Precio":"mean"})
     DatosAgrupados.to_csv('./data_lake/business/precios-mensuales.csv', encoding='utf-8', index=False)
 
+
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+    
+    compute_monthly_prices()
