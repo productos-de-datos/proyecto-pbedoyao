@@ -19,28 +19,21 @@ import compute_monthly_prices
 import luigi 
 from luigi import Task, LocalTarget
 
-class ObtenerTransformarDatos(Task):    
+class ObtenerTransformarDatos(Task):
+    
+    def output(self):
+        return LocalTarget("data_lake/cleansed/precios-horarios.csv")    
 
     def run(self):
         ingest_data.ingest_data()
         transform_data.transform_data()
-        
-
-class PrepararDatos(Task):
-    
-    def requires(self):
-        return ObtenerTransformarDatos()
-    
-    def output(self):
-        return LocalTarget("data_lake/cleansed/precios-horarios.csv")
-
-    def run(self):
         clean_data.clean_data()
+        
 
 class DatosFinales(Task):
     
     def requires(self):
-        return PrepararDatos()
+        return ObtenerTransformarDatos()
 
     def output(self):
         return LocalTarget(["data_lake/business/precios-diarios.csv","data_lake/business/precios-mensuales.csv",])
