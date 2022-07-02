@@ -12,13 +12,17 @@ def make_features():
     analizar y determinar las variables explicativas del modelo.
 
     """
-    
-    
-    
-    #raise NotImplementedError("Implementar esta función")
+    import pandas as pd
+    import shutil
 
+    #copia el archivo de precios-diarios.csv en la carpeta features 
+    shutil.copy('data_lake/business/precios-diarios.csv', 'data_lake/business/features/precios_diarios.csv')
+
+    #raise NotImplementedError("Implementar esta función")
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
+    make_features()
