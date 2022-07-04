@@ -1,7 +1,7 @@
 
 from Comun import CargarDatos
 from Comun import DatosTrainTest
-from Comun import MejorModelo
+from Comun import CargarMejorModelo
 from Comun import Evaluacion
 import numpy as np
 from sklearn.linear_model import ElasticNet
@@ -48,7 +48,7 @@ def train_daily_model():
 
     mse, mae, r2 = Evaluacion(y_test, y_pred)
 
-    MejorModelo(Estimator)
+    CargarMejorModelo(Estimator)
    
     print(len(y_pred))
     #raise NotImplementedError("Implementar esta función")
