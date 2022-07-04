@@ -1,8 +1,8 @@
 
-from models.Comun import CargarDatos
-from models.Comun import DatosTrainTest
-from models.Comun import MejorModelo
-from models.Comun import Evaluacion
+from Comun import CargarDatos
+from Comun import DatosTrainTest
+from Comun import MejorModelo
+from Comun import Evaluacion
 import numpy as np
 from sklearn.linear_model import ElasticNet
 from sklearn.model_selection import GridSearchCV

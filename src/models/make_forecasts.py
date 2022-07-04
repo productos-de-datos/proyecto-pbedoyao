@@ -12,10 +12,10 @@ def make_forecasts():
 
     """
     import pandas as pd
-    from models.Comun import MejorModelo
-    from models.Comun import DatosTrainTest
-    from models.Comun import CargarDatos
-    from models.Comun import CargarMejorModelo
+    from Comun import MejorModelo
+    from Comun import DatosTrainTest
+    from Comun import CargarDatos
+    from Comun import CargarMejorModelo
 
     #Cargamos los datos necesarios para calcular el pronostico 
 

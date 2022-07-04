@@ -9,18 +9,18 @@ import pickle
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
-def CargarDatos(data):
+def CargarDatos():
         
     Datos = pd.read_csv('data_lake/business/features/precios_diarios.csv', sep=",")
-    Datos['fecha'] = pd.to_datetime(Datos['fecha'], format='%Y-%m-%d')
-    Datos['year'] = Datos['fecha'].dt.year
-    Datos['month'] = Datos['fecha'].dt.month
-    Datos['day'] = Datos['fecha'].dt.day
+    Datos['Fecha'] = pd.to_datetime(Datos['Fecha'], format='%Y-%m-%d')
+    Datos['year'] = Datos['Fecha'].dt.year
+    Datos['month'] = Datos['Fecha'].dt.month
+    Datos['day'] = Datos['Fecha'].dt.day
 
-    y = Datos["precio"]
+    y = Datos["Precio"]
     x = Datos.copy()
-    x.pop("precio")
-    x.pop("fecha")
+    x.pop("Precio")
+    x.pop("Fecha")
     return x, y
 
 def DatosTrainTest(x, y):
