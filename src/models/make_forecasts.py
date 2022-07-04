@@ -12,7 +12,6 @@ def make_forecasts():
 
     """
     import pandas as pd
-    from Comun import MejorModelo
     from Comun import DatosTrainTest
     from Comun import CargarDatos
     from Comun import CargarMejorModelo
@@ -20,7 +19,7 @@ def make_forecasts():
     #Cargamos los datos necesarios para calcular el pronostico 
 
     x, y = CargarDatos()
-    Estimator = MejorModelo()
+    Estimator = CargarMejorModelo()
     x_train, x_test, y_train, y_test = DatosTrainTest(x, y)
     y_pred = Estimator.predict(x)
 
