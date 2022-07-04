@@ -11,7 +11,7 @@ def make_monthly_prices_plot():
     precios_mensuales = pd.read_csv('data_lake/business/precios-mensuales.csv')
 
     fig, ax = plt.subplots()
-    ax.plot(precios_mensuales['fecha'], precios_mensuales['precio'])
+    ax.plot(precios_mensuales['Fecha'], precios_mensuales['Precio'])
     plt.xlabel("Fecha")
     plt.ylabel("Precio")
     plt.title("Precio Promedio Mensual")

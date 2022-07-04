@@ -14,7 +14,7 @@ def make_daily_prices_plot():
     precios_diarios = pd.read_csv('data_lake/business/precios-diarios.csv')
 
     fig, ax = plt.subplots()
-    ax.plot(precios_diarios['fecha'], precios_diarios['precio'])
+    ax.plot(precios_diarios['Fecha'], precios_diarios['Precio'])
     plt.xlabel("Fecha")
     plt.ylabel("Precio")
     plt.title("Precio Promedio Diario")
