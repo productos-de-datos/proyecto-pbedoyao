@@ -134,13 +134,13 @@ def test_10():
 
 def test_11():
     """Modelo creado"""
-    os.system("make make_forecasts")
+    os.system("make make_train_daily_model")
     assert os.path.isfile("src/models/precios-diarios.pkl") is True
 
 
 def test_12():
     """Pronosticos"""
-    os.system("make make_train_daily_model")
+    os.system("make make_forecasts")
     assert os.path.isfile("data_lake/business/forecasts/precios-diarios.csv") is True
 
 
