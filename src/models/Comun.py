@@ -40,7 +40,6 @@ def MejorModelo(estimator):
     with open("src/models/precios-diarios.pickle", "wb") as file:
         pickle.dump(estimator, file)
 
-#Creamos funcion para cargar el modelo
 def CargarMejorModelo():
 
     if not os.path.exists("src/models/"):
@@ -50,7 +49,7 @@ def CargarMejorModelo():
 
     return estimator
 
-def Evaluacion(y_true, y_pred):
+def Evaluacion(y_true, y_pred): 
     
     mse = mean_squared_error(y_true, y_pred)
     mae = mean_absolute_error(y_true, y_pred)

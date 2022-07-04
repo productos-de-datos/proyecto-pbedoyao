@@ -1,30 +1,27 @@
-
-from Comun import CargarDatos
-from Comun import DatosTrainTest
-from Comun import MejorModelo
-from Comun import Evaluacion
-import numpy as np
-from sklearn.linear_model import ElasticNet
-from sklearn.model_selection import GridSearchCV
-
 def train_daily_model():
     
     """Entrena el modelo de pronóstico de precios diarios.
 
     Con las features entrene el modelo de proóstico de precios diarios y
     salvelo en models/precios-diarios.pkl
-    
     """
     
     """Entrena el modelo de pronóstico de precios diarios.
     Con las features entrene el modelo de proóstico de precios diarios y
     salvelo en models/precios-diarios.pkl
     """
+    
+    from Comun import CargarDatos
+    from Comun import DatosTrainTest
+    from Comun import MejorModelo
+    from Comun import Evaluacion
+    import numpy as np
+    from sklearn.linear_model import ElasticNet
+    from sklearn.model_selection import GridSearchCV  
 
     alphas=np.linspace(0.0001, 0.5, 10)
     l1_ratios=np.linspace(0.0001, 0.5, 10)
     n_splits=5
-    
     
     x, y = CargarDatos()
     x_train, x_test, y_train, y_test = DatosTrainTest(x, y)
@@ -52,7 +49,6 @@ def train_daily_model():
    
     print(len(y_pred))
     #raise NotImplementedError("Implementar esta función")
-
 
 if __name__ == "__main__":
     import doctest
