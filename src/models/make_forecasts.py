@@ -10,19 +10,19 @@ def make_forecasts():
 
     * El pronóstico del precio promedio real.
 
-
     """
     import pandas as pd
-    from train_daily_model import load_best_estimator
-    from train_daily_model import make_train_test_split
-    from train_daily_model import load_data
+    from models.Comun import MejorModelo
+    from models.Comun import DatosTrainTest
+    from models.Comun import CargarDatos
+    from models.Comun import CargarMejorModelo
 
     #Cargamos los datos necesarios para calcular el pronostico 
 
-    x, y = load_data()
-    estimator = load_best_estimator()
-    x_train, x_test, y_train, y_test = make_train_test_split(x, y)
-    y_pred = estimator.predict(x)
+    x, y = CargarDatos()
+    Estimator = MejorModelo()
+    x_train, x_test, y_train, y_test = DatosTrainTest(x, y)
+    y_pred = Estimator.predict(x)
 
     #Cargamos el archivo de precios diarios
     path_file = r'data_lake/business/precios-diarios.csv'

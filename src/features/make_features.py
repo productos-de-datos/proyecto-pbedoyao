@@ -12,7 +12,6 @@ def make_features():
     analizar y determinar las variables explicativas del modelo.
 
     """
-    import pandas as pd
     import shutil
 
     #copia el archivo de precios-diarios.csv en la carpeta features 

@@ -1,66 +1,58 @@
+
+from models.Comun import CargarDatos
+from models.Comun import DatosTrainTest
+from models.Comun import MejorModelo
+from models.Comun import Evaluacion
+import numpy as np
+from sklearn.linear_model import ElasticNet
+from sklearn.model_selection import GridSearchCV
+
 def train_daily_model():
+    
     """Entrena el modelo de pronóstico de precios diarios.
 
     Con las features entrene el modelo de proóstico de precios diarios y
     salvelo en models/precios-diarios.pkl
     
     """
-        
-    import pandas as pd
-    from sklearn.model_selection import train_test_split
-    from sklearn.preprocessing import StandardScaler
-    from sklearn.ensemble import RandomForestRegressor
-    import pickle
+    
+    """Entrena el modelo de pronóstico de precios diarios.
+    Con las features entrene el modelo de proóstico de precios diarios y
+    salvelo en models/precios-diarios.pkl
+    """
 
-    def ObtenerDatos(data):
-        
-        Datos = pd.read_csv('data_lake/business/features/precios_diarios.csv', sep=",")
-        Datos['fecha'] = pd.to_datetime(Datos['fecha'], format='%Y-%m-%d')
-        Datos['year'] = Datos['fecha'].dt.year
-        Datos['month'] = Datos['fecha'].dt.month
-        Datos['day'] = Datos['fecha'].dt.day
-
-        y = Datos["precio"]
-        x = Datos.copy()
-        x.pop("precio")
-        x.pop("fecha")
-        return x, y
-
-    def make_train_test_split(x, y):
-
-        (x_train, x_test, y_train, y_test) = train_test_split(
-            x,
-            y,
-            test_size=0.30,
+    alphas=np.linspace(0.0001, 0.5, 10)
+    l1_ratios=np.linspace(0.0001, 0.5, 10)
+    n_splits=5
+    
+    
+    x, y = CargarDatos()
+    x_train, x_test, y_train, y_test = DatosTrainTest(x, y)
+    
+    Estimator = GridSearchCV(
+            ElasticNet(
             random_state=12345,
-        )
-        return x_train, x_test, y_train, y_test
+        ),
+        param_grid={
+            "alpha": alphas,
+            "l1_ratio": l1_ratios,
+        },
+        cv=n_splits,
+        refit=True,
+        return_train_score=False,
+    )
 
-    def train_mode(x_train, x_test):
+    Estimator.fit(x_train, y_train)
 
-        scaler = StandardScaler()
-        scaler.fit(x_train)
-        x_train = scaler.transform(x_train)
-        x_test = scaler.transform(x_test)
+    y_pred=Estimator.predict(x_test)
 
-        model_RF = RandomForestRegressor(n_jobs=-1)
-        
-        return model_RF
+    mse, mae, r2 = Evaluacion(y_test, y_pred)
 
-    def SalvarModelo(model_RF):
+    MejorModelo(Estimator)
+   
+    print(len(y_pred))
+    #raise NotImplementedError("Implementar esta función")
 
-        with open("src/models/precios-diarios.pickle", "wb") as file:
-            pickle.dump(model_RF, file,  pickle.HIGHEST_PROTOCOL)
-
-    def train_daily_model():
-        
-        data = pd.read_csv('data_lake/business/features/precios_diarios.csv', sep=",")
-        x, y = ObtenerDatos(data)
-        x_train, x_test, y_train, y_test = make_train_test_split(x, y)
-        model_RF = train_mode(x_train, x_test)
-        SalvarModelo(model_RF)
-
-        #raise NotImplementedError("Implementar esta función")
 
 if __name__ == "__main__":
     import doctest
@@ -68,3 +60,4 @@ if __name__ == "__main__":
     doctest.testmod()
     
     train_daily_model()
+
