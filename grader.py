@@ -126,16 +126,16 @@ def test_09():
     )
 
 
-def test_11():
-    """Evalua la creación de características para modelos"""
-    os.system("make make_features")
-    assert os.path.isfile("data_lake/business/features/precios_diarios.csv") is True
-
-
 def test_10():
     """Modelo creado"""
     os.system("make make_train_daily_model")
     assert os.path.isfile("src/models/precios-diarios.pickle") is True
+
+
+def test_11():
+    """Evalua la creación de características para modelos"""
+    os.system("make make_features")
+    assert os.path.isfile("data_lake/business/features/precios_diarios.csv") is True
 
 
 def test_12():
