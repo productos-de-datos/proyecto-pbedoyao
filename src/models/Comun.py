@@ -10,8 +10,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 def CargarDatos():
-        
-    Datos = pd.read_csv('./data_lake/business/features/precios_diarios.csv', sep=",")
+    Datos = pd.read_csv(r'./data_lake/business/features/precios_diarios.csv', sep=",")
     Datos['Fecha'] = pd.to_datetime(Datos['Fecha'], format='%Y-%m-%d')
     Datos['year'] = Datos['Fecha'].dt.year
     Datos['month'] = Datos['Fecha'].dt.month
