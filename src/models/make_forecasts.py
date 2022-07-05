@@ -15,8 +15,10 @@ def make_forecasts():
     from Comun import DatosTrainTest
     from Comun import CargarDatos
     from Comun import CargarMejorModelo
+    import shutil
 
-    #Cargamos los datos necesarios para calcular el pronostico 
+    #copia el archivo de precios-diarios.csv en la carpeta features 
+    shutil.copy('data_lake/business/precios-diarios.csv', 'data_lake/business/features/precios_diarios.csv')
 
     x, y = CargarDatos()
     Estimator = CargarMejorModelo()
