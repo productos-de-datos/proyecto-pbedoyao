@@ -6,7 +6,11 @@ def train_daily_model():
     from Comun import Evaluacion
     import numpy as np
     from sklearn.linear_model import ElasticNet
-    from sklearn.model_selection import GridSearchCV  
+    from sklearn.model_selection import GridSearchCV
+    import shutil
+
+    #copia el archivo de precios-diarios.csv en la carpeta features 
+    shutil.copy('data_lake/business/precios-diarios.csv', 'data_lake/business/features/precios_diarios.csv')
 
     alphas=np.linspace(0.0001, 0.5, 10)
     l1_ratios=np.linspace(0.0001, 0.5, 10)
