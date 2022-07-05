@@ -6,6 +6,7 @@
 # test_02: pytest
 # test_03: doctest
 #
+""" Estas funciones son para calificar el taller """
 import os
 import sys
 
