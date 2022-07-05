@@ -6,6 +6,7 @@
 # test_02: pytest
 # test_03: doctest
 #
+""" Estas funciones son para calificar el taller """
 import os
 import sys
 
@@ -114,29 +115,34 @@ def test_07():
 
 def test_08():
     """Evalua figura precios diarios"""
+    os.system("make make_daily_prices_plot")
     assert os.path.isfile("data_lake/business/reports/figures/daily_prices.png") is True
 
 
 def test_09():
     """Evalua figura precios diarios"""
+    os.system("make make_monthly_prices_plot")
     assert (
         os.path.isfile("data_lake/business/reports/figures/monthly_prices.png") is True
     )
 
 
 def test_10():
-    """Evalua la creación de características para modelos"""
-    assert os.path.isfile("data_lake/business/features/precios_diarios.csv") is True
+    """Modelo creado"""
+    os.system("make make_train_daily_model")
+    assert os.path.isfile("src/models/precios-diarios.pickle") is True
 
 
 def test_11():
-    """Modelo creado"""
-    assert os.path.isfile("modeles/precios-diarios.pkl") is True
+    """Evalua la creación de características para modelos"""
+    os.system("make make_features")
+    assert os.path.isfile("data_lake/business/features/precios_diarios.csv") is True
 
 
 def test_12():
     """Pronosticos"""
-    assert os.path.isfile("data_lake/business/forecasts/precios-diarios.csv") is True
+    os.system("make make_forecasts")
+    assert os.path.isfile("data_lake/business/forecasts-precios-diarios.csv") is True
 
 
 test = {
@@ -153,5 +159,6 @@ test = {
     "11": test_11,
     "12": test_12,
 }[sys.argv[1]]
+
 
 test()
