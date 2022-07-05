@@ -24,7 +24,7 @@ def make_forecasts():
     y_pred = estimator.predict(x)
 
     #Cargamos el archivo de precios diarios
-    path_file = r'data_lake/business/precios-diarios.csv'
+    path_file = './data_lake/business/precios-diarios.csv'
 
     #Leemos el dataframe y le adicionamos la columna con los pronosticos
     datos = pd.read_csv(path_file, index_col=None, sep=',', header=0)
@@ -32,7 +32,7 @@ def make_forecasts():
     datos.columns = ['fecha', 'precio promedio real de la electricidad', 'pronóstico del precio promedio real']
     
     #Guardamos el archivo
-    datos.to_csv('data_lake/business/forecasts/precios-diarios.csv', index=None)
+    datos.to_csv('./data_lake/business/forecasts/precios-diarios.csv', index=None)
 
 
     #raise NotImplementedError("Implementar esta función")
