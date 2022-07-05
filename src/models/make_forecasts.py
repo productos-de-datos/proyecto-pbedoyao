@@ -29,7 +29,7 @@ def make_forecasts():
     path_file = './data_lake/business/precios-diarios.csv'
 
     #Leemos el dataframe y le adicionamos la columna con los pronosticos
-    datos = pd.read_csv(path_file, index_col=None, sep=',', header=0)
+    datos = pd.read_csv(path_file, index_col=None, sep=',', header=1)
     datos['pronostico'] = y_pred
     datos.columns = ['Fecha', 'Precio promedio real de la electricidad', 'Pronóstico del precio promedio real']
     
