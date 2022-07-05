@@ -34,6 +34,7 @@ def make_forecasts():
     datos.columns = ['Fecha', 'Precio promedio real de la electricidad', 'Pronóstico del precio promedio real']
     
     datos.to_csv('data_lake/business/forecasts/precios-diarios.csv', index=None)
+    datos.to_csv('data_lake/business/forecasts-precios-diarios.csv', index=None)
 
     #raise NotImplementedError("Implementar esta función")
     
