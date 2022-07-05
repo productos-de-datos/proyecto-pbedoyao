@@ -53,6 +53,10 @@ def clean_data():
 
     ContenidoCSV = pd.concat(TodosArchivosCSV, ignore_index=True)
     ContenidoCSV.to_csv("data_lake/cleansed/precios-horarios.csv", index=False)
+    
+    def test_ResultadoColumna():
+        read_file = pd.read_csv("data_lake/cleansed/precios-horarios.csv", index=False)
+        assert ["Fecha", "Hora", "Precio"] == list(read_file.columns.values)
 
 if __name__ == "__main__":
     import doctest
